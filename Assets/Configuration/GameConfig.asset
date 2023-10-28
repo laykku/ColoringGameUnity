@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6083b21a9b71c0247910d67a8720dea7, type: 3}
+  m_Name: GameConfig
+  m_EditorClassIdentifier: 
+  gameConfig:
+    levels:
+    - backgroundTexture: {fileID: 2800000, guid: 3d2ce40b9ad05b542add865e2f05f274, type: 3}
+      maskTexture: {fileID: 2800000, guid: 58aa8d0204cb17944a7f085a3d15ca44, type: 3}
+      checkTexture: {fileID: 2800000, guid: 20b1e208f88912c4892e3c0c36ff281d, type: 3}
+      refTexture: {fileID: 2800000, guid: b41dc51d946ee8b419b51c938a03f81b, type: 3}
+      colors:
+      - {r: 0.023534775, g: 1, b: 0, a: 0}
+      - {r: 1, g: 1, b: 0, a: 0}
+      - {r: 1, g: 0, b: 0, a: 0}
+      cameraSize: 0.75
+    - backgroundTexture: {fileID: 2800000, guid: 39adaa57631cb214e9418ad1ad3ec143, type: 3}
+      maskTexture: {fileID: 2800000, guid: f59bb26b1bf33184b956554014a7ab66, type: 3}
+      checkTexture: {fileID: 2800000, guid: 7602a9bd672c4604496a625808fb23f5, type: 3}
+      refTexture: {fileID: 2800000, guid: 2d18cd418a41493469016218ae0b45e8, type: 3}
+      colors:
+      - {r: 0.023534775, g: 1, b: 0, a: 0}
+      - {r: 1, g: 0, b: 0, a: 0}
+      - {r: 0, g: 0, b: 1, a: 0}
+      cameraSize: 0.75
+    texturePaintShader: {fileID: 7200000, guid: a0cde0a7e0ab1b646bb52655173afa04, type: 3}
+    paintingMaterial: {fileID: 2100000, guid: eb69dd570236e584499b14cb3d3e6c0a, type: 2}
+  uiConfig:
+    colorSelectorPrefab: {fileID: 6322667508616844839, guid: 260533c945034764cb18fba8b1a23f46, type: 3}

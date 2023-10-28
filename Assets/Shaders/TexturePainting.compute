@@ -1,0 +1,50 @@
+#pragma kernel CSMain
+#pragma kernel CheckCoverage
+#pragma kernel ResetCoverage
+
+RWTexture2D<float4> Surface;
+RWTexture2D<float4> Mask;
+RWTexture2D<float4> Check;
+RWStructuredBuffer<int> CoverageBuffer;
+
+float2 MousePos;
+float3 PaintingColor;
+
+#define MIN_FLOAT 1e-7
+
+[numthreads(8,8,1)]
+void CSMain(uint3 id : SV_DispatchThreadID)
+{
+    const float radius = 24.0;
+    const float2 delta = float2(id.xy) - MousePos;
+    const float dist = length(delta);
+
+    float4 color = Surface[id.xy];
+    float4 mask = Mask[id.xy];
+
+    if (mask.r > 0.0 && dist <= radius)
+    {
+        color = float4(PaintingColor, mask.r);
+    }
+
+    Surface[id.xy] = color;
+}
+
+[numthreads(8,8,1)]
+void CheckCoverage(uint3 id : SV_DispatchThreadID)
+{
+    float4 color = Surface[id.xy];
+    float4 mask = Mask[id.xy];
+    float4 check = Check[id.xy];
+
+    if (mask.r > 0.0)
+    {
+        InterlockedAdd(CoverageBuffer[0], length(color - check) * 1000);
+    }
+}
+
+[numthreads(1,1,1)]
+void ResetCoverage(uint3 id : SV_DispatchThreadID)
+{
+    CoverageBuffer[0] = 0;
+}

@@ -55,9 +55,6 @@ namespace LK.PaintingGame.Code.GameStates
             _coverageBuffer = _bufferAllocator.AllocateIntBuffer();
             _texturePaintShader.SetBuffer(checkKernel, "CoverageBuffer", _coverageBuffer);
 
-            var resetKernel = _texturePaintShader.FindKernel("ResetCoverage");
-            _texturePaintShader.SetBuffer(resetKernel, "CoverageBuffer", _coverageBuffer);
-
             // ------------------
 
             _gameUI.gamePanel.Show();
@@ -84,8 +81,7 @@ namespace LK.PaintingGame.Code.GameStates
                 }
             }
 
-            var resetKernel = _texturePaintShader.FindKernel("ResetCoverage");
-            _texturePaintShader.Dispatch(resetKernel, 1, 1, 1);
+            _coverageBuffer.SetData(new int[]{0});
 
             var checkKernel = _texturePaintShader.FindKernel("CheckCoverage");
             _texturePaintShader.Dispatch(checkKernel, _textureSize / 8, _textureSize / 8, 1);
